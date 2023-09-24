@@ -2,45 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  @apply border-red-600 
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@layer components {
+  .app {
+    @apply p-1
   }
-  to {
-    transform: rotate(360deg);
+
+  .game {
+    @apply max-w-[400px] shrink
+  }
+
+  .tabs {
+    @apply grow p-1 h-screen flex flex-col 
+  }
+
+  .tablist {
+    @apply w-full flex flex-row
+  }
+
+  .tab-panel {
+    @apply p-5
+  }
+
+  .tab-item {
+    @apply px-3 py-0 mx-0.5 flex-initial
+  }
+
+  .tab-item-selected {
+    @apply bg-red-200
+  }
+
+  .tab-item-active {
+    @apply bg-pink-100
+  }
+  
+  .sidebar {
+    @apply h-screen flex flex-col 
+  }
+
+  .sidebar-item {
+    @apply h-min border border-red-100 m-0.5 px-3
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@layer utilities {
+  .tabs-visibility {
+    @apply hidden sm:flex
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  .sidebar-visibility {
+    @apply flex sm:hidden
+  }
 }
