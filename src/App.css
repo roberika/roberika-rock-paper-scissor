@@ -58,6 +58,15 @@
 .chart-header{
   @apply bg-slate-200
 }
+
+.chart-header-corner{
+  @apply bg-slate-50
+}
+
+.chart-header-column {
+  @apply text-sm first-letter:text-lg
+}
+
 .chart-outcome-cell {
   @apply text-slate-700
 }

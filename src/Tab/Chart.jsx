@@ -5,18 +5,17 @@ export default function Chart({ chart }) {
         <div className='chart' >
             <table className='chart-table'>
                 <tbody>
-                    <tr className='chart-header chart-header-row'>
-                        <th>\</th>
+                    <tr key="0" className='chart-header chart-header-row'>
+                        <th className='chart-header-corner'>{chart.outcomeTable.corner}</th>
                         {chart.outcomeTable.header.map((element, index) => (
                             <th key={index}>{element}</th>
                         ))}
                     </tr>
-                    {Object.keys(chart.outcomeTable).filter((e) => chart.show.includes(e))?.forEach((outcomes, index) => (
-                        <tr key={index}>
-                            <th className='chart-header chart-header-column'>{chart.outcomeTable.header[index]}</th>
-                            {chart.outcomeTable[outcomes].map((outcome, index) => (
-                                <td className={"chart-outcome-cell " + chart.outcomeDetail[outcome].className} key={index}>
-                                    {console.log(chart.outcomeDetail[outcome])}
+                    {Object.keys(chart.outcomeTable).filter((e) => chart.show.includes(e))?.map((outcomes, rowIndex) => (
+                        <tr key={rowIndex + 1}>
+                            <th className="chart-header chart-header-column">{chart.outcomeTable.header[rowIndex]}</th>
+                            {chart.outcomeTable[outcomes].map((outcome, cellIndex) => (
+                                <td className={"chart-outcome-cell " + chart.outcomeDetail[outcome].className} key={cellIndex}>
                                     {chart.outcomeDetail[outcome].outcome}
                                 </td>
                             ))}

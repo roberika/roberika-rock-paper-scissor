@@ -12,6 +12,7 @@ function App() {
       "rock", "paper", "scissors",
     ],
     outcomeTable: {
+      corner: "-",
       header: ["Rock", "Paper", "Scissors",],
       rock: ["tie", "lose", "win",],
       paper: ["lose", "win", "tie",],
