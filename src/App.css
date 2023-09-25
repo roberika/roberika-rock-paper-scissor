@@ -3,20 +3,20 @@
 @tailwind utilities;
 
 * {
-  @apply border-red-600 
+  @apply border-red-600 border
 }
 
 @layer components {
   .app {
-    @apply p-1
+    @apply p-4 h-screen w-screen flex flex-row
   }
 
   .game {
-    @apply max-w-[400px] shrink
+    @apply sm:max-w-[300px] shrink
   }
 
   .tabs {
-    @apply grow p-1 h-screen flex flex-col 
+    @apply grow p-1 h-screen flex flex-col  ml-5
   }
 
   .tablist {
@@ -24,11 +24,15 @@
   }
 
   .tab-panel {
-    @apply p-5
+    @apply p-1
   }
 
   .tab-item {
     @apply px-3 py-0 mx-0.5 flex-initial
+  }
+
+  .tab-item-first {
+    @apply ml-6
   }
 
   .tab-item-selected {
@@ -46,6 +50,28 @@
   .sidebar-item {
     @apply h-min border border-red-100 m-0.5 px-3
   }
+
+  .chart {
+    @apply bg-slate-50
+  }
+
+.chart-header{
+  @apply bg-slate-200
+}
+.chart-outcome-cell {
+  @apply text-slate-700
+}
+
+.chart-outcome-tie {
+  @apply first-letter:text-yellow-400
+}
+.chart-outcome-win {
+  @apply first-letter:text-green-400
+}
+.chart-outcome-lose {
+  @apply first-letter:text-red-400
+}
+
 }
 
 @layer utilities {

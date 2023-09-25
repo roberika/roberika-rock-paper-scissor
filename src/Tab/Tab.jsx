@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import TabButton from "./TabButton.jsx"
 import TabPanel from "./TabPanel.jsx"
+import Chart from "./Chart.jsx"
+import Settings from "./Settings.jsx"
 
-export default function Tab() {
+export default function Tab({ chart, panels }) {
 
-    const [selected, setSelected] = useState(1);
+    const [selected, setSelected] = useState(0);
 
     const moveTab = (event, tab) => {
         setSelected(tab);
@@ -13,16 +15,20 @@ export default function Tab() {
     return (
         <div className='tabs tabs-visibility' >
             <div className="tablist" role='tablist'>
-                <TabButton index="1" onClick={event => moveTab(event, 1)} selected={selected}>Chart</TabButton>
-                <TabButton index="2" onClick={event => moveTab(event, 2)} selected={selected}>Settings</TabButton>
+                {panels.map((label, index) => (
+                    <TabButton key={index} index={index} onClick={event => moveTab(event, index)} selected={selected}>{label}</TabButton>
+                ))}
             </div>
             <div className='flex-grow'>
-                <TabPanel index="1" selected={selected}>
-                    Hey guys it's Markiplier.
-                </TabPanel>
-                <TabPanel index="2" selected={selected}>
-                    Top of the morning to you laddies.
-                </TabPanel>
+                {[
+                    <Chart chart={chart} />,
+                    <Settings />,
+                    <hr />,
+                ].map((children, index) => (
+                    <TabPanel key={index} index={index} selected={selected}>
+                        {children}
+                    </TabPanel>
+                ))}
             </div>
         </div>
     )
