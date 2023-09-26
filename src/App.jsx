@@ -4,6 +4,9 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Tab from './Tab/Tab.jsx'
 import Sidebar from './Sidebar/Sidebar.jsx'
+import rockIcon from './assets/rock.svg'
+import paperIcon from './assets/paper.svg'
+import scissorsIcon from './assets/scissors.svg'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,12 +14,16 @@ function App() {
     show: [
       "rock", "paper", "scissors",
     ],
-    outcomeTable: {
+    elementDetail: {
+      rock: { element: "Rock", icon: rockIcon, className: "chart-element-rock" },
+      paper: { element: "Paper", icon: paperIcon, className: "chart-element-paper" },
+      scissors: { element: "Scissors", icon: scissorsIcon, className: "chart-element-scissors" },
+    }, outcomeTable: {
       corner: "-",
-      header: ["Rock", "Paper", "Scissors",],
+      header: ["rock", "paper", "scissors",],
       rock: ["tie", "lose", "win",],
-      paper: ["lose", "win", "tie",],
-      scissors: ["win", "tie", "lose",],
+      paper: ["win", "tie", "lose",],
+      scissors: ["lose", "win", "tie",],
     }, outcomeDetail: {
       tie: { className: "chart-outcome-tie", outcome: "Tie", },
       lose: { className: "chart-outcome-lose", outcome: "Lose", },
