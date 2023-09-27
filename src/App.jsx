@@ -7,6 +7,7 @@ import Sidebar from './Sidebar/Sidebar.jsx'
 import rockIcon from './assets/rock.svg'
 import paperIcon from './assets/paper.svg'
 import scissorsIcon from './assets/scissors.svg'
+import Game from './Game/Game.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -38,11 +39,7 @@ function App() {
 
   return (
     <div className='app'>
-      <div className='game'>
-        <p className='m-auto'>
-          Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! Hi! v
-        </p>
-      </div>
+      <Game />
       <Tab chart={chart} panels={panels}></Tab>
       <Sidebar panels={panels}></Sidebar>
     </div>
