@@ -8,7 +8,7 @@
 
 @layer components {
   .app {
-    @apply p-4 h-screen w-screen flex flex-row
+    @apply p-4 grow flex flex-row bg-white
   }
 
   .game {
@@ -16,19 +16,23 @@
   }
 
   .tabs {
-    @apply grow p-1 h-screen flex flex-col  ml-5
+    @apply flex flex-col ml-5 flex-nowrap flex-1
+  }
+
+  .sidebar {
+    @apply ml-4 pl-4 border-l-2 border-l-red-400
   }
 
   .tablist {
-    @apply w-full flex flex-row
+    @apply w-full flex flex-row mb-1
   }
 
   .tab-panel {
-    @apply p-1
+    @apply flex flex-row h-min max-w-full overflow-y-auto
   }
 
   .tab-item {
-    @apply px-3 py-0 mx-0.5 flex-initial
+    @apply px-3 py-0 mx-0.5 flex-initial text-sm
   }
 
   .tab-item-first {
@@ -52,37 +56,46 @@
   }
 
   .chart {
-    @apply bg-slate-50
+    @apply bg-slate-50 h-min
   }
 
-  .chart-icon {
-    @apply max-w-[50%] inline-block w-[500]
+  .chart img {
+    @apply inline-block p-1
   }
-.chart-header{
-  @apply bg-slate-200 p-0 m-0
-}
+    
+  .chart th {
+    @apply bg-slate-200 p-0 m-0
+  }
 
-.chart-header-corner{
-  @apply bg-slate-50
-}
+  .chart-header-corner img {
+    @apply p-1 h-1/2
+  }
 
-.chart-header-column {
-  @apply text-sm first-letter:text-lg
-}
+  .chart-header-column {
+    @apply text-sm first-letter:text-lg
+  }
 
-.chart-outcome-cell {
-  @apply text-slate-700
-}
+  .chart-header-row {
+    @apply text-sm first-letter:text-lg
+  }
 
-.chart-outcome-tie {
-  @apply first-letter:text-yellow-400
-}
-.chart-outcome-win {
-  @apply first-letter:text-green-400
-}
-.chart-outcome-lose {
-  @apply first-letter:text-red-400
-}
+  .chart td,th {
+    @apply aspect-square
+  }
+
+  .chart td {
+    @apply text-slate-50 text-center text-2xl
+  }
+
+  .chart-outcome-tie {
+    @apply bg-yellow-100
+  }
+  .chart-outcome-win {
+    @apply bg-green-100
+  }
+  .chart-outcome-lose {
+    @apply bg-red-100
+  }
 
 }
 

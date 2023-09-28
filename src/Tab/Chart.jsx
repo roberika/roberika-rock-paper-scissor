@@ -1,38 +1,39 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { ChartContext } from '../Context/ChartContext.jsx'
 
-export default function Chart({ chart }) {
+export default function Chart() {
+    const chart = useContext(ChartContext);
+
     return (
-        <div className='chart' >
-            <table className='chart-table'>
-                <tbody>
-                    <tr key="0">
-                        <th className='chart-header chart-header-corner'>{chart.outcomeTable.corner}</th>
-                        {chart.outcomeTable.header.map((element, index) => (
-                            <th className='chart-header chart-header-row' key={index}>
-                                <img className='chart-icon'
-                                    src={chart.elementDetail[element].icon}
-                                    alt={chart.elementDetail[element].element} />
-                            </th>
+        <table className='chart' >
+            <tbody>
+                <tr key="0">
+                    <th className='chart-header-corner'>
+                        <ChartIcon cell={chart.outcomeTable.corner} />
+                    </th>
+                    {chart.outcomeTable.header.map((elementKey, index) => (
+                        <th className='chart-header-row' key={index}>
+                            <ChartIcon cell={chart.elementDetail[elementKey]} />
+                        </th>
+                    ))}
+                </tr>
+                {Object.keys(chart.outcomeTable).filter((e) => chart.show.includes(e))?.map((outcomes, rowIndex) => (
+                    <tr key={rowIndex + 1}>
+                        <th className="chart-header-column">
+                            <ChartIcon cell={chart.elementDetail[chart.outcomeTable.header[rowIndex]]} />
+                        </th>
+                        {chart.outcomeTable[outcomes].map((outcomeKey, cellIndex) => (
+                            <td className={chart.outcomeDetail[outcomeKey].className} key={cellIndex}>
+                                <ChartIcon cell={chart.outcomeDetail[outcomeKey]} />
+                            </td>
                         ))}
                     </tr>
-                    {Object.keys(chart.outcomeTable).filter((e) => chart.show.includes(e))?.map((outcomes, rowIndex) => (
-                        <tr key={rowIndex + 1}>
-                            <th className="chart-header chart-header-column">
-                                <img className='chart-icon'
-                                    src={chart.elementDetail[chart.outcomeTable.header[rowIndex]].icon}
-                                    alt={chart.elementDetail[chart.outcomeTable.header[rowIndex]].element} />
-                            </th>
-                            {chart.outcomeTable[outcomes].map((outcome, cellIndex) => (
-                                <td className={"chart-outcome-cell " + chart.outcomeDetail[outcome].className} key={cellIndex}>
-                                    {chart.outcomeDetail[outcome].outcome}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <br />
-            <hr />
-        </div >
+                ))}
+            </tbody>
+        </table>
     )
+}
+
+function ChartIcon({ cell }) {
+    return <img src={cell.icon} alt={cell.text} />
 }
