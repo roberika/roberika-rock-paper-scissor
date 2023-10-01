@@ -5,11 +5,29 @@
     <link rel="icon" type="image/svg+xml" href="/rockpaperscissor/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
-    <script type="module" crossorigin src="/rockpaperscissor/assets/index-8970188f.js"></script>
-    <link rel="stylesheet" href="/rockpaperscissor/assets/index-508ad160.css">
+    <style>
+      html {
+        height: 100% !important;  
+        width: 100% !important;
+        margin: 0 !important;
+        display: flex;
+        flex-direction: row;
+      }
+
+      body, .wrapper{
+        display: flex;
+        flex-direction: row;
+      }
+
+      body, .wrapper, .app {
+        flex-grow: 1;
+      }
+    </style>
+    <script type="module" crossorigin src="/rockpaperscissor/assets/index-f11d25f4.js"></script>
+    <link rel="stylesheet" href="/rockpaperscissor/assets/index-760ec2ac.css">
   </head>
   <body>
-    <div id="root"></div>
+      <div id="root" class="wrapper"></div>
     
   </body>
 </html>
