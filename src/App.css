@@ -32,7 +32,7 @@
   }
 
   .tab-item {
-    @apply px-3 py-0 mx-0.5 flex-initial text-sm
+    @apply px-3 py-0 mx-0.5 flex-initial text-sm text-zinc-900
   }
 
   .tab-item-first {
@@ -56,7 +56,7 @@
   }
 
   .chart {
-    @apply bg-slate-50 h-min
+    @apply bg-slate-50
   }
 
   .chart img {
@@ -68,7 +68,7 @@
   }
 
   .chart-header-corner img {
-    @apply p-1 h-1/2
+    @apply p-1 w-1/2
   }
 
   .chart-header-column {
@@ -96,7 +96,6 @@
   .chart-outcome-lose {
     @apply bg-red-100
   }
-
 }
 
 @layer utilities {

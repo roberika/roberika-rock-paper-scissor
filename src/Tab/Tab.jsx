@@ -34,7 +34,7 @@ function TabPanel({ children, index }) {
             role='tabpanel'
             aria-labelledby={"tab-" + (index + 1)}
             tabIndex="0"
-            className={"tab-panel " + (panel.selected == index ? "visible" : "hidden")}>
+            className={"panel-" + (index + 1) + " tab-panel " +  (panel.selected == index ? "visible" : "hidden")}>
             {children}
         </div >
     )
