@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react'
-import Chart from "./Chart.jsx"
 import Settings from "./Settings.jsx"
 import { PanelContext } from '../Context/PanelContext.jsx'
 
@@ -14,9 +13,8 @@ export default function Tab({ chart, panels }) {
                 ))}
             </div>
             {[
-                <Chart />,
-                <Settings />,
                 <hr />,
+                <Settings />,
             ].map((children, index) => (
                 <TabPanel key={index} index={index}>
                     {children}
@@ -26,7 +24,7 @@ export default function Tab({ chart, panels }) {
     )
 }
 
-function TabPanel({ children, index }) {
+export function TabPanel({ children, index }) {
     const panel = useContext(PanelContext);
     return (
         <div

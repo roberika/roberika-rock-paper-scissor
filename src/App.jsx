@@ -31,9 +31,11 @@ import earthIcon from './assets/icons/earth.svg'
 import swordIcon from './assets/icons/sword.svg'
 import fingerIcon from './assets/icons/finger.svg'
 
-import Game from './Game/Game.jsx'
+import Chart from './Tab/Chart.jsx'
+
 import { ChartContext } from './Context/ChartContext'
 import { PanelContext } from './Context/PanelContext'
+import { GameContext } from './Context/GameContext'
 
 function App() {
   const [chart, setChart] = useState({
@@ -406,24 +408,73 @@ function App() {
 
   const [panel, setPanel] = useState({
     show: [
-      "chart", "settings", "about",
+      "about","settings",
     ], panelDetail: {
-      chart: { text: "Chart" },
-      settings: { text: "Settings" },
       about: { text: "About" },
+      settings: { text: "Settings" },
     }, selected: 0
     , focused: 0
     , onClick: moveTab,
   })
 
+  const [delayedText, setDelayedText] = useState("");
+
+  const chooseThis = (event, hand) => {
+    // setTimeout(() => {
+    //   setDelayedText("Computer's Turn");
+    // }, 1000);
+    
+    let playerHand = hand;
+    let computerHand = chart.show[2];
+    let result = chart.outcomeDetail[playerHand][computerHand];
+    setGame((prev) => ({
+      ...prev,
+      playerHand: playerHand,
+      computerHand: computerHand,
+      result: result,
+    }));
+    
+  }
+
+  const setComputerHand = () => {
+    setGame((prev) => ({
+      ...prev,
+      computerHand: chart.show[2]
+    }));
+  }
+
+  const [game, setGame] = useState({
+    turn: 0,
+    turns: [ "Player", "Computer" ],
+    playerHand: "none",
+    computerHand: "none",
+    result: "none",
+    results: { 
+      none: "None",
+      win: "Win", 
+      lose: "Lose", 
+      tie: "Draw", 
+      winShine: "Great Victory",
+      loseShine: "Great Defeat",
+      tieShine: "Even Fight", },
+    onClick: chooseThis,
+  })
+
   return (
     <ChartContext.Provider value={chart}>
       <PanelContext.Provider value={panel}>
+        <GameContext.Provider value={game}>
         <div className='app'>
-          <Game />
+          <div className='tabs'>
+            
+          <div className='tab-panel'>
+            <Chart />
+          </div>
+          </div>
           <Tab></Tab>
           <Sidebar></Sidebar>
         </div>
+        </GameContext.Provider>
       </PanelContext.Provider>
     </ChartContext.Provider>
   )
