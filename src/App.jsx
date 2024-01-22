@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 //import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -38,27 +38,28 @@ import { PanelContext } from './Context/PanelContext'
 import { GameContext } from './Context/GameContext'
 
 function App() {
+
   const [chart, setChart] = useState({
     show: [
       "rock", "paper", "scissors", "gun", "bigGun",
     ], elementDetail: {
-      rock: { text: "Rock", icon: rockIcon, className: "chart-element-rock" },
-      paper: { text: "Paper", icon: paperIcon, className: "chart-element-paper" },
-      scissors: { text: "Scissors", icon: scissorsIcon, className: "chart-element-scissors" },
-      thunder: { text: "Thunder", icon: thunderIcon, className: "chart-element-thunder" },
-      lightning: { text: "Lightning", icon: lightningIcon, className: "chart-element-lightning" },
-      fire: { text: "Fire", icon: fireIcon, className: "chart-element-fire" },
-      water: { text: "Water", icon: waterIcon, className: "chart-element-water" },
-      earth: { text: "Earth", icon: earthIcon, className: "chart-element-earth" },
-      nineSpades: { text: "Nine of Spades", icon: nineSpadesIcon, className: "chart-element-nine-spades" },
-      aceHearts: { text: "Ace of Hearts", icon: aceHeartsIcon, className: "chart-element-ace-hearts" },
-      actualPaper: { text: "Actual Paper", icon: actualPaperIcon, className: "chart-element-actual-paper" },
-      actualGun: { text: "Actual Gun", icon: actualGunIcon, className: "chart-element-actual-gun" },
-      bigGun: { text: "Big Gun", icon: bigGunIcon, className: "chart-element-big-gun" },
-      gun: { text: "Gun", icon: gunIcon, className: "chart-element-gun" },
-      dragon: { text: "Dragon", icon: dragonIcon, className: "chart-element-dragon" },
-      sword: { text: "Sword", icon: swordIcon, className: "chart-element-sword" },
-      finger: { text: "Finger", icon: fingerIcon, className: "chart-element-finger" },
+      rock: { key: "rock", text: "Rock", icon: rockIcon, className: "chart-element-rock" },
+      paper: { key: "paper", text: "Paper", icon: paperIcon, className: "chart-element-paper" },
+      scissors: { key: "scissors", text: "Scissors", icon: scissorsIcon, className: "chart-element-scissors" },
+      thunder: { key: "thunder", text: "Thunder", icon: thunderIcon, className: "chart-element-thunder" },
+      lightning: { key: "lightning", text: "Lightning", icon: lightningIcon, className: "chart-element-lightning" },
+      fire: { key: "fire", text: "Fire", icon: fireIcon, className: "chart-element-fire" },
+      water: { key: "water", text: "Water", icon: waterIcon, className: "chart-element-water" },
+      earth: { key: "earth", text: "Earth", icon: earthIcon, className: "chart-element-earth" },
+      nineSpades: { key: "nineSpades", text: "Nine of Spades", icon: nineSpadesIcon, className: "chart-element-nine-spades" },
+      aceHearts: { key: "aceHearts", text: "Ace of Hearts", icon: aceHeartsIcon, className: "chart-element-ace-hearts" },
+      actualPaper: { key: "actualPaper", text: "Actual Paper", icon: actualPaperIcon, className: "chart-element-actual-paper" },
+      actualGun: { key: "actualGun", text: "Actual Gun", icon: actualGunIcon, className: "chart-element-actual-gun" },
+      bigGun: { key: "bigGun", text: "Big Gun", icon: bigGunIcon, className: "chart-element-big-gun" },
+      gun: { key: "gun", text: "Gun", icon: gunIcon, className: "chart-element-gun" },
+      dragon: { key: "dragon", text: "Dragon", icon: dragonIcon, className: "chart-element-dragon" },
+      sword: { key: "sword", text: "Sword", icon: swordIcon, className: "chart-element-sword" },
+      finger: { key: "finger", text: "Finger", icon: fingerIcon, className: "chart-element-finger" },
     }, outcomeTable: {
       corner: { text: "Corner", icon: rPlainIcon },
       header: [
@@ -408,8 +409,9 @@ function App() {
 
   const [panel, setPanel] = useState({
     show: [
-      "about","settings",
+      "log", "about", "settings",
     ], panelDetail: {
+      log: { text: "Log" },
       about: { text: "About" },
       settings: { text: "Settings" },
     }, selected: 0
@@ -419,32 +421,57 @@ function App() {
 
   const [delayedText, setDelayedText] = useState("");
 
-  const chooseThis = (event, hand) => {
+  const chooseThis = (event, hand, gameContext) => {
     // setTimeout(() => {
     //   setDelayedText("Computer's Turn");
     // }, 1000);
     
-    let playerHand = hand;
-    let computerHand = chart.show[2];
-    let result = chart.outcomeDetail[playerHand][computerHand];
+    let newPlayerHand = hand;
+    let newComputerHand = chart.show[2];
+    let newResult = chart.outcomeTable[newPlayerHand][newComputerHand];
+    let log1 = <div className="text-active">{"You played [" + newPlayerHand + "]."}</div>;
+    let log2 = <div className="text-active">{"Our contender played [" + newComputerHand + "]."}</div>;
+    let log3 = null;
+    switch(newResult){
+      case "none" : 
+        log3 = <div className="text-background">{"But nothing happened..."}</div>
+        break
+      case "win" : 
+        log3 = <div className="text-win">{"And you won. Nice."}</div>
+        break
+      case "lose" : 
+        log3 = <div className="text-lose">{"And you lost. What a shame."}</div>
+        break
+      case "tie" : 
+        log3 = <div className="text-background">{"And it's a tie."}</div>
+        break
+      case "winShine" : 
+        log3 = <div className="text-win-shine">{"AND YOU DECIMATED THEM! HURRAH!"}</div>
+        break
+      case "loseShine" : 
+        log3 = <div className="text-lose-shine">{"AND YOU\'RE FUCKING DESTROYED!"}</div>
+        break
+      case "tieShine" : 
+        log3 = <div className="text-tie-shine">{"AND NOTHING HAPPENED."}</div>
+        break
+    }
+    let newRound = gameContext.round + 1;
+    let log4 = <div className="text-hidden"> blank text </div>;
+    let log5 = <div className="text-background"> == == == == Round {newRound} == == == == </div>;
     setGame((prev) => ({
       ...prev,
-      playerHand: playerHand,
-      computerHand: computerHand,
-      result: result,
+      playerHand: newPlayerHand,
+      computerHand: newComputerHand,
+      result: newResult,
+      round: newRound,
+      log: [...prev.log, log1, log2, log3, log4, log5 ],
     }));
     
-  }
-
-  const setComputerHand = () => {
-    setGame((prev) => ({
-      ...prev,
-      computerHand: chart.show[2]
-    }));
+    console.log([gameContext.round, gameContext.playerHand, gameContext.computerHand, gameContext.result])
   }
 
   const [game, setGame] = useState({
-    turn: 0,
+    round: 1,
     turns: [ "Player", "Computer" ],
     playerHand: "none",
     computerHand: "none",
@@ -458,6 +485,12 @@ function App() {
       loseShine: "Great Defeat",
       tieShine: "Even Fight", },
     onClick: chooseThis,
+    log: [
+      <div className="text-background">Initiating Better Rock Paper Scissors...</div>,
+      <div className="text-background">Welcome, contender!</div>,
+      <div className="text-hidden"> blank text </div>,
+      <div className="text-background"> == == == == Round 1 == == == == </div>,
+    ],
   })
 
   return (

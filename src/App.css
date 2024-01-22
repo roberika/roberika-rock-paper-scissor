@@ -68,7 +68,7 @@
   }
 
   .chart-header-corner img {
-    @apply p-1 w-1/2
+    @apply p-1
   }
 
   .chart-header-player:hover {
@@ -91,6 +91,42 @@
   }
   .chart-outcome-lose {
     @apply bg-red-100
+  }
+
+  .log {
+    @apply flex-row
+  }
+
+  .text-hidden {
+    @apply invisible
+  }
+
+  .text-background {
+    @apply text-slate-600 font-light italic
+  }
+  
+  .text-active {
+    @apply text-slate-900 font-normal not-italic
+  }
+
+  .text-win {
+    @apply text-green-900 font-normal italic
+  }
+
+  .text-win-shine {
+    @apply text-green-600 font-bold not-italic
+  }
+
+  .text-lose {
+    @apply text-red-900 font-normal italic
+  }
+
+  .text-lose-shine {
+    @apply text-red-600 font-bold not-italic
+  }
+
+  .text-tie-shine {
+    @apply text-slate-700 font-bold not-italic
   }
 }
 
