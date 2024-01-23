@@ -2,17 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-.ala {
-  @apply border-red-600 border
-}
-
 @layer components {
   .app {
-    @apply p-4 grow flex flex-row bg-white
+    @apply p-4 grow flex flex-row bg-white max-w-4xl mx-auto
   }
 
   .tabs {
-    @apply flex flex-col ml-5 flex-nowrap flex-1
+    @apply flex flex-col ml-5 flex-nowrap flex-1 
   }
 
   .sidebar {
@@ -24,11 +20,15 @@
   }
 
   .tab-panel {
-    @apply flex flex-row h-min max-w-full overflow-y-auto
+    @apply flex flex-row h-min max-w-full overflow-y-auto 
+  }
+
+  .right-panel {
+    @apply border border-slate-400 p-3
   }
 
   .tab-item {
-    @apply px-3 py-0 mx-0.5 flex-initial text-sm text-zinc-900
+    @apply px-3 py-0 mx-0.5 flex-initial text-sm text-zinc-900 font-semibold
   }
 
   .tab-item-first {
@@ -56,7 +56,11 @@
   }
 
   .chart {
-    @apply bg-slate-50
+    @apply bg-slate-50 overflow-hidden
+  }
+
+  .chart-hand {
+    @apply w-[40%] rotate-12 ml-auto pr-3 mr-7 pb-3 -mt-5 mb-5
   }
 
   .chart img {
@@ -73,6 +77,19 @@
 
   .chart-header-player:hover {
     @apply bg-slate-600
+  }
+
+  .chart-header-selected {
+    @apply bg-green-900
+  }
+  .chart-header-selected:hover {
+    @apply bg-green-700
+  }
+  .chart-header-corner-selected {
+    @apply bg-slate-400
+  }
+  .chart-header-enemy, .chart-header-enemy:hover {
+    @apply bg-slate-200
   }
 
   .chart td,th {
@@ -127,6 +144,10 @@
 
   .text-tie-shine {
     @apply text-slate-700 font-bold not-italic
+  }
+
+  .clickable-text {
+    @apply border-l-8 border-slate-600 bg-slate-300 pl-3 pr-2 py-0
   }
 }
 

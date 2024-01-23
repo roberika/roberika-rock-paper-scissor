@@ -21,7 +21,7 @@ export default function Log() {
     }, [game.log])
 
     return (
-        <div className='log' onClick={print}>
+        <div className='log flex-1' onClick={print}>
             {game.log.map((line, index) =>
                 line
             )}

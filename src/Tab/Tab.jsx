@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import Settings from "./Settings.jsx"
+import Glossary from "./Glossary.jsx"
 import About from "./About.jsx"
 import Log from "./Log.jsx"
 import { PanelContext } from '../Context/PanelContext.jsx'
@@ -16,6 +17,7 @@ export default function Tab({ chart, panels }) {
             </div>
             {[
                 <Log />,
+                <Glossary />,
                 <About />,
                 <Settings />,
             ].map((children, index) => (
@@ -35,7 +37,7 @@ export function TabPanel({ children, index }) {
             role='tabpanel'
             aria-labelledby={"tab-" + (index + 1)}
             tabIndex="0"
-            className={"panel-" + (index + 1) + " tab-panel " +  (panel.selected == index ? "visible" : "hidden")}>
+            className={"right-panel panel-" + (index + 1) + " tab-panel " +  (panel.selected == index ? "visible" : "hidden")}>
             {children}
         </div >
     )

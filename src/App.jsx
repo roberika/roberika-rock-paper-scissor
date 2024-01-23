@@ -1,13 +1,10 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 //import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Tab from './Tab/Tab.jsx'
 import Sidebar from './Sidebar/Sidebar.jsx'
 
-import rockIcon from './assets/icons/rock.svg'
-import paperIcon from './assets/icons/paper.svg'
-import scissorsIcon from './assets/icons/scissors.svg'
 import rPlainIcon from './assets/icons/r.svg'
 import rFullIcon from './assets/icons/r_full.svg'
 import winIcon from './assets/icons/win.svg'
@@ -16,6 +13,10 @@ import tieIcon from './assets/icons/tie.svg'
 import winShineIcon from './assets/icons/win_shine.svg'
 import loseShineIcon from './assets/icons/lose_shine.svg'
 import tieShineIcon from './assets/icons/tie_shine.svg'
+
+import rockIcon from './assets/icons/rock.svg'
+import paperIcon from './assets/icons/paper.svg'
+import scissorsIcon from './assets/icons/scissors.svg'
 import thunderIcon from './assets/icons/thunder.svg'
 import lightningIcon from './assets/icons/lightning.svg'
 import actualPaperIcon from './assets/icons/actual_paper.svg'
@@ -31,6 +32,28 @@ import earthIcon from './assets/icons/earth.svg'
 import swordIcon from './assets/icons/sword.svg'
 import fingerIcon from './assets/icons/finger.svg'
 
+import rockHandIcon from './assets/hands/rock.svg'
+import paperHandIcon from './assets/hands/paper.svg'
+import scissorsHandIcon from './assets/hands/scissors.svg'
+import thunderHandIcon from './assets/hands/thunder.svg'
+import lightningHandIcon from './assets/hands/lightning.svg'
+import actualPaperHandIcon from './assets/hands/actual_paper.svg'
+import actualGunHandIcon from './assets/hands/actual_gun.svg'
+import bigGunHandIcon from './assets/hands/big_gun.svg'
+import gunHandIcon from './assets/hands/gun.svg'
+import nineSpadesHandIcon from './assets/hands/nine_spades.svg'
+import aceHeartsHandIcon from './assets/hands/ace_hearts.svg'
+import dragonHandIcon from './assets/hands/dragon.svg'
+import fireHandIcon from './assets/hands/fire.svg'
+import waterHandIcon from './assets/hands/water.svg'
+import earthHandIcon from './assets/hands/earth.svg'
+import swordHandIcon from './assets/hands/sword.svg'
+import fingerHandIcon from './assets/hands/finger.svg'
+
+import down1Icon from './assets/icons/down1.svg'
+import down2Icon from './assets/icons/down2.svg'
+import down3Icon from './assets/icons/down3.svg'
+
 import Chart from './Tab/Chart.jsx'
 
 import { ChartContext } from './Context/ChartContext'
@@ -39,29 +62,39 @@ import { GameContext } from './Context/GameContext'
 
 function App() {
 
+  const setCornerIconFrame = (frame) => {
+    setChart((prev) => ({
+      ...prev,
+      cornerIconFrame: frame,
+    }))
+  };
+
   const [chart, setChart] = useState({
+    cornerIconFrame: 0,
+    setCornerIconFrame: setCornerIconFrame,
     show: [
       "rock", "paper", "scissors", "gun", "bigGun",
     ], elementDetail: {
-      rock: { key: "rock", text: "Rock", icon: rockIcon, className: "chart-element-rock" },
-      paper: { key: "paper", text: "Paper", icon: paperIcon, className: "chart-element-paper" },
-      scissors: { key: "scissors", text: "Scissors", icon: scissorsIcon, className: "chart-element-scissors" },
-      thunder: { key: "thunder", text: "Thunder", icon: thunderIcon, className: "chart-element-thunder" },
-      lightning: { key: "lightning", text: "Lightning", icon: lightningIcon, className: "chart-element-lightning" },
-      fire: { key: "fire", text: "Fire", icon: fireIcon, className: "chart-element-fire" },
-      water: { key: "water", text: "Water", icon: waterIcon, className: "chart-element-water" },
-      earth: { key: "earth", text: "Earth", icon: earthIcon, className: "chart-element-earth" },
-      nineSpades: { key: "nineSpades", text: "Nine of Spades", icon: nineSpadesIcon, className: "chart-element-nine-spades" },
-      aceHearts: { key: "aceHearts", text: "Ace of Hearts", icon: aceHeartsIcon, className: "chart-element-ace-hearts" },
-      actualPaper: { key: "actualPaper", text: "Actual Paper", icon: actualPaperIcon, className: "chart-element-actual-paper" },
-      actualGun: { key: "actualGun", text: "Actual Gun", icon: actualGunIcon, className: "chart-element-actual-gun" },
-      bigGun: { key: "bigGun", text: "Big Gun", icon: bigGunIcon, className: "chart-element-big-gun" },
-      gun: { key: "gun", text: "Gun", icon: gunIcon, className: "chart-element-gun" },
-      dragon: { key: "dragon", text: "Dragon", icon: dragonIcon, className: "chart-element-dragon" },
-      sword: { key: "sword", text: "Sword", icon: swordIcon, className: "chart-element-sword" },
-      finger: { key: "finger", text: "Finger", icon: fingerIcon, className: "chart-element-finger" },
+      none: { handIcon: paperHandIcon },
+      rock: { key: "rock", text: "Rock", icon: rockIcon, handIcon: rockHandIcon, className: "chart-element-rock" },
+      paper: { key: "paper", text: "Paper", icon: paperIcon, handIcon: paperHandIcon, className: "chart-element-paper" },
+      scissors: { key: "scissors", text: "Scissors", icon: scissorsIcon, handIcon: scissorsHandIcon, className: "chart-element-scissors" },
+      thunder: { key: "thunder", text: "Thunder", icon: thunderIcon, handIcon: thunderHandIcon, className: "chart-element-thunder" },
+      lightning: { key: "lightning", text: "Lightning", icon: lightningIcon, handIcon: lightningHandIcon, className: "chart-element-lightning" },
+      fire: { key: "fire", text: "Fire", icon: fireIcon, handIcon: fireHandIcon, className: "chart-element-fire" },
+      water: { key: "water", text: "Water", icon: waterIcon, handIcon: waterHandIcon, className: "chart-element-water" },
+      earth: { key: "earth", text: "Earth", icon: earthIcon, handIcon: earthHandIcon, className: "chart-element-earth" },
+      nineSpades: { key: "nineSpades", text: "Nine of Spades", icon: nineSpadesIcon, handIcon: nineSpadesHandIcon, className: "chart-element-nine-spades" },
+      aceHearts: { key: "aceHearts", text: "Ace of Hearts", icon: aceHeartsIcon, handIcon: aceHeartsHandIcon, className: "chart-element-ace-hearts" },
+      actualPaper: { key: "actualPaper", text: "Actual Paper", icon: actualPaperIcon, handIcon: actualPaperHandIcon, className: "chart-element-actual-paper" },
+      actualGun: { key: "actualGun", text: "Actual Gun", icon: actualGunIcon, handIcon: actualGunHandIcon, className: "chart-element-actual-gun" },
+      bigGun: { key: "bigGun", text: "Big Gun", icon: bigGunIcon, handIcon: bigGunHandIcon, className: "chart-element-big-gun" },
+      gun: { key: "gun", text: "Gun", icon: gunIcon, handIcon: gunHandIcon, className: "chart-element-gun" },
+      dragon: { key: "dragon", text: "Dragon", icon: dragonIcon, handIcon: dragonHandIcon, className: "chart-element-dragon" },
+      sword: { key: "sword", text: "Sword", icon: swordIcon, handIcon: swordHandIcon, className: "chart-element-sword" },
+      finger: { key: "finger", text: "Finger", icon: fingerIcon, handIcon: fingerHandIcon, className: "chart-element-finger" },
     }, outcomeTable: {
-      corner: { text: "Corner", icon: rPlainIcon },
+      corner: { text: "Corner", icons: [rPlainIcon, down1Icon, down3Icon, down2Icon,] },
       header: [
         "rock", "paper", "scissors", "gun", "bigGun", "actualGun", "sword", 
         "finger", "earth", "water", "fire", "thunder", "lightning", "actualPaper",
@@ -409,9 +442,10 @@ function App() {
 
   const [panel, setPanel] = useState({
     show: [
-      "log", "about", "settings",
+      "log", "glossary", "about", "settings",
     ], panelDetail: {
       log: { text: "Log" },
+      glossary: { text: "Glossary" },
       about: { text: "About" },
       settings: { text: "Settings" },
     }, selected: 0
@@ -421,13 +455,25 @@ function App() {
 
   const [delayedText, setDelayedText] = useState("");
 
+  const confirmThis = (hand, gameContext) => {
+    setGame((prev) => ({
+      ...prev,
+      selection: hand,
+    }));
+  }
+
   const chooseThis = (event, hand, gameContext) => {
     // setTimeout(() => {
     //   setDelayedText("Computer's Turn");
     // }, 1000);
+
+    if ( gameContext.selection == "none" | gameContext.selection != hand){
+      confirmThis(hand);
+      return;
+    }
     
     let newPlayerHand = hand;
-    let newComputerHand = chart.show[2];
+    let newComputerHand = getComputerHand(hand, gameContext);
     let newResult = chart.outcomeTable[newPlayerHand][newComputerHand];
     let log1 = <div className="text-active">{"You played [" + newPlayerHand + "]."}</div>;
     let log2 = <div className="text-active">{"Our contender played [" + newComputerHand + "]."}</div>;
@@ -457,9 +503,10 @@ function App() {
     }
     let newRound = gameContext.round + 1;
     let log4 = <div className="text-hidden"> blank text </div>;
-    let log5 = <div className="text-background"> == == == == Round {newRound} == == == == </div>;
+    let log5 = <div className="text-background"> {"== == == == Round " + newRound + " == == == =="} </div>;
     setGame((prev) => ({
       ...prev,
+      selection: "none",
       playerHand: newPlayerHand,
       computerHand: newComputerHand,
       result: newResult,
@@ -470,8 +517,20 @@ function App() {
     console.log([gameContext.round, gameContext.playerHand, gameContext.computerHand, gameContext.result])
   }
 
+  const getComputerHand = (hand, gameContext) => {
+    switch(gameContext.aiMode){
+      case 0:
+        return chart.show[2]
+      case 1 : 
+        return chart.show[Math.floor(Math.random() * chart.show.length)];
+    }
+  }
+
   const [game, setGame] = useState({
+    aiMode: 0,
+    aiModes: ["Robert Mode", "Random Mode",],
     round: 1,
+    selection: "none",
     turns: [ "Player", "Computer" ],
     playerHand: "none",
     computerHand: "none",
