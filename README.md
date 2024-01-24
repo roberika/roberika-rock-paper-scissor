@@ -1,8 +1,7 @@
-# React + Vite
+# """"Better"""" Rock Paper Scissors
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Link to play it [here](https://roberika.github.io/roberika-rock-paper-scissor/)
 
-Currently, two official plugins are available:
+A simple project made to help me get familiar with React. Uses React along with Vite and Tailwind. Sprites made with Aseprite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![image](https://github.com/roberika/roberika-rock-paper-scissor/assets/40657895/29bb6247-9b7d-42e6-88a5-f22498430c03)
