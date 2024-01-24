@@ -12,10 +12,9 @@ export default function Settings() {
     const [aiName, setAIName] = useState(game.aiModes[game.aiMode]);
 
     return (
-        <div className='black-text' >
+        <div className='text-active grow' >
             <p> AI Mode </p>
             <p className={"clickable-text"} onClick={cycleAISettings}> {aiName} </p>
-            <br />
         </div>
     )
 }

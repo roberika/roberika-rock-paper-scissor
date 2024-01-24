@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer components {
+  .background {
+    @apply h-full w-full bg-blue-200
+  }
+
   .app {
-    @apply p-4 grow flex flex-row bg-white max-w-4xl mx-auto
+    @apply p-4 grow flex flex-row bg-purple-50 h-full max-w-4xl mx-auto
   }
 
   .tabs {
@@ -20,7 +24,7 @@
   }
 
   .tab-panel {
-    @apply flex flex-row h-min max-w-full overflow-y-auto 
+    @apply flex flex-row h-min max-w-full overflow-y-auto
   }
 
   .right-panel {
@@ -49,10 +53,6 @@
 
   .sidebar-item {
     @apply h-min border border-red-100 m-0.5 px-3
-  }
-
-  .black-text {
-    @apply text-slate-800
   }
 
   .chart {
@@ -114,6 +114,14 @@
     @apply flex-row
   }
 
+  .log-text {
+    @apply pl-2 -ml-2
+  }
+
+  .log-text-highlighted {
+    @apply bg-green-50 border-green-600 border-r-8
+  }
+
   .text-hidden {
     @apply invisible
   }
@@ -148,6 +156,18 @@
 
   .clickable-text {
     @apply border-l-8 border-slate-600 bg-slate-300 pl-3 pr-2 py-0
+  }
+
+  .about-footer {
+    @apply flex flex-row flex-1
+  }
+
+  .about-footer-text {
+    @apply grow
+  }
+
+  .social-icon {
+    @apply w-6 inline-block
   }
 }
 

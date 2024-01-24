@@ -50,6 +50,7 @@ import earthHandIcon from './assets/hands/earth.svg'
 import swordHandIcon from './assets/hands/sword.svg'
 import fingerHandIcon from './assets/hands/finger.svg'
 
+import backgroundImage from './assets/background.svg'
 import down1Icon from './assets/icons/down1.svg'
 import down2Icon from './assets/icons/down2.svg'
 import down3Icon from './assets/icons/down3.svg'
@@ -553,22 +554,24 @@ function App() {
   })
 
   return (
-    <ChartContext.Provider value={chart}>
-      <PanelContext.Provider value={panel}>
-        <GameContext.Provider value={game}>
-        <div className='app'>
-          <div className='tabs'>
-            
-          <div className='tab-panel'>
-            <Chart />
+    <div className='background' style={{backgroundImage: `url(${backgroundImage})`}}>
+      <ChartContext.Provider value={chart}>
+        <PanelContext.Provider value={panel}>
+          <GameContext.Provider value={game}>
+          <div className='app'>
+            <div className='tabs'>
+              
+            <div className='tab-panel'>
+              <Chart />
+            </div>
+            </div>
+            <Tab></Tab>
+            <Sidebar></Sidebar>
           </div>
-          </div>
-          <Tab></Tab>
-          <Sidebar></Sidebar>
-        </div>
-        </GameContext.Provider>
-      </PanelContext.Provider>
-    </ChartContext.Provider>
+          </GameContext.Provider>
+        </PanelContext.Provider>
+      </ChartContext.Provider>
+    </div>
   )
 }
 
