@@ -4,12 +4,14 @@ import Glossary from "./Glossary.jsx"
 import About from "./About.jsx"
 import Log from "./Log.jsx"
 import { PanelContext } from '../Context/PanelContext.jsx'
+import { ChartContext } from '../Context/ChartContext.jsx'
+import { GameContext } from '../Context/GameContext.jsx'
 
-export default function Tab({ chart, panels }) {
+export default function Tab({ }) {
     const panel = useContext(PanelContext);
 
     return (
-        <div className='tabs tabs-visibility' >
+        <div className='tabs right-tabs tabs-visibility' >
             <div className="tablist" role='tablist'>
                 {Object.keys(panel.panelDetail).filter((e) => panel.show.includes(e))?.map((panelKey, index) => (
                     <TabButton key={index} index={index}>{panel.panelDetail[panelKey].text}</TabButton>
@@ -25,8 +27,18 @@ export default function Tab({ chart, panels }) {
                     {children}
                 </TabPanel>
             ))}
+            <HandSprite />
         </div>
     )
+}
+
+function HandSprite() {
+    const chart = useContext(ChartContext);
+    const game = useContext(GameContext);
+
+    return <img className={"chart-hand " + (game.selection == "none" ? "invisible" : "visible")} 
+    src={chart.elementDetail[game.selection].handIcon}
+    alt={chart.elementDetail[game.selection].text } />
 }
 
 export function TabPanel({ children, index }) {

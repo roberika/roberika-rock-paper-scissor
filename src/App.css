@@ -12,7 +12,15 @@
   }
 
   .tabs {
-    @apply flex flex-col ml-5 flex-nowrap flex-1 
+    @apply flex flex-col flex-nowrap
+  }
+
+  .left-tabs {
+    @apply grow
+  }
+
+  .right-tabs {
+    @apply grow-0 ml-5
   }
 
   .sidebar {
@@ -24,7 +32,7 @@
   }
 
   .tab-panel {
-    @apply flex flex-row h-min max-w-full overflow-y-auto
+    @apply flex flex-row h-full max-w-full overflow-y-auto
   }
 
   .right-panel {
@@ -48,7 +56,7 @@
   }
   
   .sidebar {
-    @apply h-screen flex flex-col 
+    @apply h-screen flex flex-col
   }
 
   .sidebar-item {
@@ -135,7 +143,7 @@
   }
 
   .text-win {
-    @apply text-green-900 font-normal italic
+    @apply text-green-800 font-normal italic
   }
 
   .text-win-shine {
@@ -168,6 +176,37 @@
 
   .social-icon {
     @apply w-6 inline-block
+  }
+
+  .results-layer-1 {
+    bottom: calc(50% - 4rem);
+    @apply sticky -mt-16 h-16 w-full flex top-1/2
+  }
+  .results-layer-1-fading {
+    visibility: hidden;
+    transition-property: visibility;
+    transition-delay: 1.5s;
+  }
+  .results-layer-1-invisible {
+    @apply z-0
+  }
+  .results-layer-1-visible {
+    @apply z-20
+  }
+
+  .results-layer-2 {
+    @apply text-4xl grow flex opacity-10
+  }
+  .results-layer-2 * {
+    @apply m-auto
+  }
+  .results-layer-2-invisible {
+    @apply text-transparent bg-transparent
+  }
+  .results-layer-2-appearing {
+    opacity: 1!important;
+    transition-property: opacity;
+    transition-duration: 0.5s;
   }
 }
 

@@ -74,7 +74,7 @@ function App() {
     cornerIconFrame: 0,
     setCornerIconFrame: setCornerIconFrame,
     show: [
-      "rock", "paper", "scissors", "gun", "bigGun",
+      "rock", "paper", "scissors", "gun", "bigGun", "actualGun", "sword", "finger",
     ], elementDetail: {
       none: { handIcon: paperHandIcon },
       rock: { key: "rock", text: "Rock", icon: rockIcon, handIcon: rockHandIcon, className: "chart-element-rock" },
@@ -96,10 +96,6 @@ function App() {
       finger: { key: "finger", text: "Finger", icon: fingerIcon, handIcon: fingerHandIcon, className: "chart-element-finger" },
     }, outcomeTable: {
       corner: { text: "Corner", icons: [rPlainIcon, down1Icon, down3Icon, down2Icon,] },
-      header: [
-        "rock", "paper", "scissors", "gun", "bigGun", "actualGun", "sword", 
-        "finger", "earth", "water", "fire", "thunder", "lightning", "actualPaper",
-        "nineSpades", "aceHearts", "dragon",],
       rock: {
         rock: "tie", //basic
         paper: "lose", //basic
@@ -146,111 +142,111 @@ function App() {
         bigGun: "win", //slow gun
         actualGun: "lose", //gun
         sword: "lose", //stronger steel
-        finger: "", 
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        finger: "win", //scissor finger challenge gone wrong 
+        earth: "lose", //basically rock
+        water: "lose", //rust
+        fire: "lose", //melt
+        thunder: "win", //just sound
+        lightning: "loseShine", //not just sound
+        actualPaper: "win", //basically paper
+        nineSpades: "win", //basically paper
+        aceHearts: "win", //basically paper
+        dragon: "lose", //good luck
       },
       gun: {
-        rock: "win", 
-        paper: "win", 
-        scissors: "win", 
-        gun: "lose",
-        bigGun: "win",
-        actualGun: "lose",
-        sword: "win",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "win", //playground rules
+        paper: "win", //playground rules
+        scissors: "win", //playground rules
+        gun: "lose", //the bot is faster
+        bigGun: "lose", //big gun better
+        actualGun: "lose", //lmao
+        sword: "win", //dagger to gunfight
+        finger: "loseShine", //nice
+        earth: "tie", //nothing happens
+        water: "lose", //rust
+        fire: "lose", //melt
+        thunder: "lose", //the thunder is louder
+        lightning: "lose", //get zapped
+        actualPaper: "win", //literal target
+        nineSpades: "lose", //throw the card to cut the barrel
+        aceHearts: "lose", //throw the card to cut the barrel
+        dragon: "lose", //good luck 
       },
       bigGun: {
-        rock: "lose", 
-        paper: "win", 
-        scissors: "lose", 
-        gun: "lose",
-        bigGun: "tie",
-        actualGun: "lose",
-        sword: "lose",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "lose", //the rock is faster
+        paper: "win", //it's paper
+        scissors: "lose", //faster
+        gun: "lose", //faster
+        bigGun: "win", //block with the barrel
+        actualGun: "lose", //yeah
+        sword: "lose", //big gun slow
+        finger: "loseShine", //nice
+        earth: "tie", //still nothing happens
+        water: "lose", //still rust
+        fire: "lose", //still melt
+        thunder: "win", //the big gun is louder
+        lightning: "lose", //get zapped
+        actualPaper: "win", //literal target
+        nineSpades: "lose", //throw the card to cut the barrel
+        aceHearts: "lose", //throw the card to cut the barrel
+        dragon: "lose", //still lost
       },
       actualGun: {
-        rock: "win", 
-        paper: "win", 
-        scissors: "win", 
-        gun: "win",
-        bigGun: "win",
-        actualGun: "loseShine",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "win", //deadground rules
+        paper: "win", //deadground rules
+        scissors: "win", //deadground rules
+        gun: "win", //deadground rules
+        bigGun: "win", //deadground rules
+        actualGun: "loseShine", //the bot is still faster
+        sword: "win", //sword to real gunfight
+        finger: "win", //get fucked
+        earth: "tie", //earth vs a gun
+        water: "tie", //water vs a gun
+        fire: "lose", //still melt
+        thunder: "tie", //a sound vs a gun
+        lightning: "lose", //zeus sends his regards
+        actualPaper: "win", //basically paper
+        nineSpades: "win", //basically paper
+        aceHearts: "win", //basically paper
+        dragon: "win", //don't exist vs exist
       },
       sword: {
-        rock: "",
-        paper: "",
-        scissors: "",
-        gun: "",
-        bigGun: "",
-        actualGun: "",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "lose", //excalibur
+        paper: "win", //basically paper
+        scissors: "win", //stronger sword
+        gun: "lose", //gunned
+        bigGun: "win", //slow gun
+        actualGun: "lose", //gunned
+        sword: "lose", //robots aren't that agile
+        finger: "win", //yeah
+        earth: "lose", //excalibur
+        water: "lose", //rust
+        fire: "win", //fire sword
+        thunder: "win", //thunder sword
+        lightning: "lose", //lighting rod
+        actualPaper: "win", //basically paper
+        nineSpades: "win", //basically paper
+        aceHearts: "win", //basically paper
+        dragon: "win", //hero kills the dragon
       },
       finger: {
-        rock: "",
-        paper: "",
-        scissors: "",
-        gun: "",
-        bigGun: "",
-        actualGun: "",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "win", //don't do this to kids
+        paper: "win", //they'll follow you
+        scissors: "win", //don't do this to kids
+        gun: "tieShine", //it's both bullshit
+        bigGun: "tieShine", //still both bullshit
+        actualGun: "loseShine", //get gunned
+        sword: "loseShine", //get stabbed
+        finger: "winShine", //eat this AI
+        earth: "tie", //the earth don't care
+        water: "tie", //the water don't care
+        fire: "loseShine", //the flames does care
+        thunder: "winShine", //fuck you zeus
+        lightning: "loseShine", //fuck you zeus
+        actualPaper: "tie", //the paper don't care
+        nineSpades: "tie", //the paper don't care
+        aceHearts: "tie", //the paper don't care
+        dragon: "loseShine", //the dragon REALLY cares
       },
       earth: {
         rock: "",
@@ -460,6 +456,7 @@ function App() {
     setGame((prev) => ({
       ...prev,
       selection: hand,
+      result: "none",
     }));
   }
 
@@ -476,8 +473,8 @@ function App() {
     let newPlayerHand = hand;
     let newComputerHand = getComputerHand(hand, gameContext);
     let newResult = chart.outcomeTable[newPlayerHand][newComputerHand];
-    let log1 = <div className="text-active">{"You played [" + newPlayerHand + "]."}</div>;
-    let log2 = <div className="text-active">{"Our contender played [" + newComputerHand + "]."}</div>;
+    let log1 = <div className="text-active">{"You played [" + chart.elementDetail[newPlayerHand].text + "]."}</div>;
+    let log2 = <div className="text-active">{"Our contender played [" + chart.elementDetail[newComputerHand].text + "]."}</div>;
     let log3 = null;
     switch(newResult){
       case "none" : 
@@ -499,7 +496,7 @@ function App() {
         log3 = <div className="text-lose-shine">{"AND YOU\'RE FUCKING DESTROYED!"}</div>
         break
       case "tieShine" : 
-        log3 = <div className="text-tie-shine">{"AND NOTHING HAPPENED."}</div>
+        log3 = <div className="text-tie-shine">{"AND NOTHING HAPPENED!"}</div>
         break
     }
     let newRound = gameContext.round + 1;
@@ -537,13 +534,13 @@ function App() {
     computerHand: "none",
     result: "none",
     results: { 
-      none: "None",
-      win: "Win", 
-      lose: "Lose", 
-      tie: "Draw", 
-      winShine: "Great Victory",
-      loseShine: "Great Defeat",
-      tieShine: "Even Fight", },
+      none: {text: "None", classNames: {layer2: "text-win-active bg-slate-200", layer3: "opacity-80"}},
+      win: {text: "Win", classNames: {layer2: "text-win bg-green-200", layer3: "opacity-80"}},
+      lose: {text: "Lose", classNames: {layer2: "text-lose bg-red-200", layer3: "opacity-80"}},
+      tie: {text: "Tie", classNames: {layer2: "text-background bg-yellow-200", layer3: "opacity-80"}}, 
+      winShine: {text: "Great Victory", classNames: {layer2: "text-win-shine bg-green-300", layer3: "opacity-100"}},
+      loseShine: {text: "Great Defeat", classNames: {layer2: "text-lose-shine bg-red-300", layer3: "opacity-100"}},
+      tieShine: {text: "Even Fight", classNames: {layer2: "text-tie-shine bg-yellow-300", layer3: "opacity-100"}}, },
     onClick: chooseThis,
     log: [
       <div className="text-background">Initiating Better Rock Paper Scissors...</div>,
@@ -559,11 +556,10 @@ function App() {
         <PanelContext.Provider value={panel}>
           <GameContext.Provider value={game}>
           <div className='app'>
-            <div className='tabs'>
-              
-            <div className='tab-panel'>
-              <Chart />
-            </div>
+            <div className='tabs left-tabs'>
+              <div className='tab-panel'>
+                <Chart />
+              </div>
             </div>
             <Tab></Tab>
             <Sidebar></Sidebar>

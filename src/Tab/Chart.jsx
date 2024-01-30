@@ -6,9 +6,10 @@ export default function Chart() {
 
     const chart = useContext(ChartContext);
     const game = useContext(GameContext);
+
     const [cornerIcon, setCornerIcon] = useState({
         icon: chart.outcomeTable.corner.icons[0],
-        text: chart.outcomeTable.corner.text,
+        text: "Select your hand!",
     }) 
 
     useEffect(() => {
@@ -23,15 +24,15 @@ export default function Chart() {
     }, [cornerIcon]);
 
     return (
-        <div>
-            <div className='chart'>
-                <table>
+        <div className=''>
+            <div className='chart z-10'>
+                <table className='relative z-10'>
                     <tbody>
                         <tr key="0">
                             <ChartHeader className={'chart-header chart-header-corner ' + (game.selection == "none" ? "" : "chart-header-corner-selected")}
                             cell={ game.selection == "none" ? cornerIcon : chart.elementDetail[game.selection]}/>
                             
-                            {chart.outcomeTable.header.filter((e) => chart.show.includes(e))?.map((elementKey, index) => (
+                            {Object.keys(chart.outcomeTable).filter((e) => chart.show.includes(e))?.map((elementKey, index) => (
                                 <ChartHeader 
                                     className='chart-header chart-header-enemy' 
                                     key={index}
@@ -45,7 +46,7 @@ export default function Chart() {
                                         "chart-header chart-header-player " + 
                                         (game.turn == 0 ? "chart-header-player-active" : "")
                                     }
-                                    cell={chart.elementDetail[chart.outcomeTable.header[rowIndex]]} />
+                                    cell={chart.elementDetail[outcomes]} />
                                 {Object.keys(chart.outcomeTable[outcomes]).filter((e) => chart.show.includes(e))?.map((outcomeKey, cellIndex) => (
                                     <ChartContent 
                                         cell={chart.outcomeDetail[chart.outcomeTable[outcomes][outcomeKey]]} 
@@ -55,12 +56,23 @@ export default function Chart() {
                         ))}
                     </tbody>
                 </table>
+                <ResultsBanner/>
             </div>
-            <ChartIcon className={"chart-hand " + (game.selection == "none" ? "invisible" : "visible")} cell={{
-                icon: chart.elementDetail[game.selection].handIcon, 
-                text: chart.elementDetail[game.selection].text }}/>
         </div>
     )
+}
+
+function ResultsBanner() {
+    const game = useContext(GameContext);
+
+    return <div className={'results-layer-1 ' + (game.result == "none" ? "results-layer-1-invisible" : "results-layer-1-visible results-layer-1-fading")}>
+        <div className={'results-layer-2 ' + (game.results[game.result].classNames.layer2) +
+            (game.result == "none" ? " results-layer-2-invisible" : " results-layer-2-appearing")}>
+            <div className={"results-layer-3 " + (game.results[game.result].classNames.layer3)}>
+                <p>{game.results[game.result].text}</p>
+            </div>
+        </div>
+    </div>
 }
 
 function ChartIcon({ cell, className }) {
