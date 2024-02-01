@@ -458,6 +458,7 @@ function App() {
     setGame((prev) => ({
       ...prev,
       selection: hand,
+      resetBanner: 0,
     }));
   }
 
@@ -554,6 +555,7 @@ function App() {
       result: newResult,
       hands: newHands,
       round: newRound,
+      resetBanner: 1,
       show: newShow,
       log: [...prev.log, log1, log2, log3, log4, log5, log6,  ],
     }));
@@ -592,6 +594,7 @@ function App() {
       loses: 0,
       ties: 0,
       round: 1,
+      resetBanner: 0,
       selection: "none",
       playerHand: "none",
       computerHand: "none",
@@ -612,6 +615,7 @@ function App() {
     loses: 0,
     ties: 0,
     round: 1,
+    resetBanner: 0,
     selection: "none",
     playerHand: "none",
     computerHand: "none",

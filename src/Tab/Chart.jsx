@@ -81,9 +81,9 @@ export default function Chart() {
 function ResultsBanner() {
     const game = useContext(GameContext);
 
-    return <div className={'results-layer-1 ' + (game.result == "none" ? "results-layer-1-invisible" : "results-layer-1-visible results-layer-1-fading")}>
+    return <div className={'results-layer-1 ' + (game.resetBanner == 0 ? "results-layer-1-invisible" : "results-layer-1-visible results-layer-1-fading")}>
         <div className={'results-layer-2 ' + (game.results[game.result].classNames.layer2) +
-            (game.result == "none" ? " results-layer-2-invisible" : " results-layer-2-appearing")}>
+            (game.resetBanner == 0 ? " results-layer-2-invisible" : " results-layer-2-appearing")}>
             <div className={"results-layer-3 " + (game.results[game.result].classNames.layer3)}>
                 <p>{game.results[game.result].text}</p>
             </div>
