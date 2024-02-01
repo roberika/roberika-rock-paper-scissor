@@ -4,10 +4,11 @@ import { GameContext } from '../Context/GameContext.jsx';
 
 export default function Chart() {
 
-    const chart = useContext(ChartContext);
+    var chart = useContext(ChartContext);
     const game = useContext(GameContext);
 
     const [cornerIcon, setCornerIcon] = useState({
+        key: "header",
         icon: chart.outcomeTable.corner.icons[0],
         text: "Select your hand!",
     }) 
@@ -29,25 +30,40 @@ export default function Chart() {
                 <table className='relative z-10'>
                     <tbody>
                         <tr key="0">
-                            <ChartHeader className={'chart-header chart-header-corner ' + (game.selection == "none" ? "" : "chart-header-corner-selected")}
-                            cell={ game.selection == "none" ? cornerIcon : chart.elementDetail[game.selection]}/>
+                            {(game.show.length == 0 
+                            ?  <th className={"chart-header chart-header-corner chart-header-corner-reset"}>
+                                <button onClick={event => {
+                                    game.resetGame();
+                                }}>
+                                <ChartIcon cell={chart.outcomeTable.reset}/>
+                                </button>
+                            </th>
+                            : <ChartHeader 
+                                className={'chart-header chart-header-corner ' + (game.selection == "none" ? "" : "chart-header-corner-selected")}
+                                cell={(game.selection == "none" 
+                                        ? cornerIcon 
+                                        : chart.elementDetail[game.selection])}
+                                />
+                            )}
                             
-                            {Object.keys(chart.outcomeTable).filter((e) => chart.show.includes(e))?.map((elementKey, index) => (
+                            {Object.keys(chart.outcomeTable).filter((e) => game.hands.includes(e))?.map((elementKey, index) => (
                                 <ChartHeader 
                                     className='chart-header chart-header-enemy' 
                                     key={index}
-                                    cell={chart.elementDetail[elementKey]} />
+                                    cell={chart.elementDetail[elementKey]}
+                                     />
                             ))}
                         </tr>
-                        {Object.keys(chart.outcomeTable).filter((e) => chart.show.includes(e))?.map((outcomes, rowIndex) => (
+                        {Object.keys(chart.outcomeTable).filter((e) => game.hands.includes(e))?.map((outcomes, rowIndex) => (
                             <tr key={rowIndex + 1}>
                                 <ChartHeader 
                                     className={
                                         "chart-header chart-header-player " + 
                                         (game.turn == 0 ? "chart-header-player-active" : "")
                                     }
-                                    cell={chart.elementDetail[outcomes]} />
-                                {Object.keys(chart.outcomeTable[outcomes]).filter((e) => chart.show.includes(e))?.map((outcomeKey, cellIndex) => (
+                                    cell={chart.elementDetail[outcomes]}
+                                     />
+                                {Object.keys(chart.outcomeTable[outcomes]).filter((e) => game.hands.includes(e))?.map((outcomeKey, cellIndex) => (
                                     <ChartContent 
                                         cell={chart.outcomeDetail[chart.outcomeTable[outcomes][outcomeKey]]} 
                                         key={cellIndex} />
@@ -86,9 +102,13 @@ function ChartContent({ cell }) {
 }
 
 function ChartHeader({ className, cell }) {
+    const chart = useContext(ChartContext);
     const game = useContext(GameContext);
+
     return <th className={className + (game.selection == cell.key ? " chart-header-selected" : "")}>
-        <button onClick={event => game.onClick(event, cell.key, game)}>
+        <button onClick={event => {
+            game.onClick(event, cell.key, game, chart);
+        }}>
         <ChartIcon cell={cell}/>
         </button>
     </th>

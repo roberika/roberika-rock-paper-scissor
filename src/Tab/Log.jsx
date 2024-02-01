@@ -13,7 +13,6 @@ export default function Log() {
     const scrollAnchor = useRef(null);
 
     useEffect(() => {
-        print()
         setShowLoadText(true);
         setTimeout(() => {
             setShowLoadText(false);
@@ -25,12 +24,14 @@ export default function Log() {
         <div className='log grow' onClick={print}>
             {game.log.map((line, index) => 
                 <div className={"log-text " + 
-                    ((index < game.log.length-2 & index > game.log.length-7) 
+                    ((index < game.log.length-1 & index > game.log.length-8) 
                         ? "log-text-highlighted" : "" )
-                    }> {line} 
+                    } key={index}> {line} 
                 </div>
             )}
+            <div className={"text-background " + (showLoadText ? "hidden" : "visible")}>{"" + game.wins + " wins - " + game.loses + " loses - " + game.ties + " ties"}</div>
             <div className={"text-background " + (showLoadText ? "hidden" : "visible")}>Your turn</div>
+            <div className={"text-background " + (showLoadText ? "visible" : "hidden")}>...</div>
             <div className={"text-background " + (showLoadText ? "visible" : "hidden")}>...</div>
             <div ref={scrollAnchor}></div>
         </div>

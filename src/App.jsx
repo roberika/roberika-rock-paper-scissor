@@ -5,8 +5,6 @@ import './App.css'
 import Tab from './Tab/Tab.jsx'
 import Sidebar from './Sidebar/Sidebar.jsx'
 
-import rPlainIcon from './assets/icons/r.svg'
-import rFullIcon from './assets/icons/r_full.svg'
 import winIcon from './assets/icons/win.svg'
 import loseIcon from './assets/icons/lose.svg'
 import tieIcon from './assets/icons/tie.svg'
@@ -51,6 +49,10 @@ import swordHandIcon from './assets/hands/sword.svg'
 import fingerHandIcon from './assets/hands/finger.svg'
 
 import backgroundImage from './assets/background.svg'
+
+import resetIcon from './assets/icons/reset.svg'
+import rPlainIcon from './assets/icons/r.svg'
+import rFullIcon from './assets/icons/r_full.svg'
 import down1Icon from './assets/icons/down1.svg'
 import down2Icon from './assets/icons/down2.svg'
 import down3Icon from './assets/icons/down3.svg'
@@ -73,10 +75,11 @@ function App() {
   const [chart, setChart] = useState({
     cornerIconFrame: 0,
     setCornerIconFrame: setCornerIconFrame,
+    cornerURL: "https://www.wikihow.com/Play-Rock,-Paper,-Scissors",
     show: [
-      "rock", "paper", "scissors", "gun", "bigGun", "actualGun", "sword", "finger",
+      "rock", "paper", "scissors", "gun", "bigGun", "actualGun", "sword", "finger", "earth", "water", "fire", "thunder", "lightning", "actualPaper", "nineSpades", "aceHearts", "dragon"
     ], elementDetail: {
-      none: { handIcon: paperHandIcon },
+      none: { key: "none", text: "None", handIcon: paperHandIcon },
       rock: { key: "rock", text: "Rock", icon: rockIcon, handIcon: rockHandIcon, className: "chart-element-rock" },
       paper: { key: "paper", text: "Paper", icon: paperIcon, handIcon: paperHandIcon, className: "chart-element-paper" },
       scissors: { key: "scissors", text: "Scissors", icon: scissorsIcon, handIcon: scissorsHandIcon, className: "chart-element-scissors" },
@@ -93,9 +96,10 @@ function App() {
       gun: { key: "gun", text: "Gun", icon: gunIcon, handIcon: gunHandIcon, className: "chart-element-gun" },
       dragon: { key: "dragon", text: "Dragon", icon: dragonIcon, handIcon: dragonHandIcon, className: "chart-element-dragon" },
       sword: { key: "sword", text: "Sword", icon: swordIcon, handIcon: swordHandIcon, className: "chart-element-sword" },
-      finger: { key: "finger", text: "Finger", icon: fingerIcon, handIcon: fingerHandIcon, className: "chart-element-finger" },
+      finger: { key: "finger", text: "The Finger", icon: fingerIcon, handIcon: fingerHandIcon, className: "chart-element-finger" },
     }, outcomeTable: {
       corner: { text: "Corner", icons: [rPlainIcon, down1Icon, down3Icon, down2Icon,] },
+      reset: { text: "Reset", icon: resetIcon },
       rock: {
         rock: "tie", //basic
         paper: "lose", //basic
@@ -108,7 +112,7 @@ function App() {
         earth: "lose", //bigger rock
         water: "lose", //just a pebble
         fire: "win", //not flammable
-        thunder: "lose", //big electricity split rock
+        thunder: "tie", //it's just sound
         lightning: "win", //small electricity do nothing
         actualPaper: "tie", //literal paper
         nineSpades: "tie", //literal paper
@@ -127,7 +131,7 @@ function App() {
         earth: "win", //just bigger rock
         water: "win", //dissolved
         fire: "lose", //burned
-        thunder: "lose", //burned
+        thunder: "tie", //it's just sound
         lightning: "lose", //burned
         actualPaper: "lose", //paper cut
         nineSpades: "tie", //paper on paper
@@ -143,10 +147,10 @@ function App() {
         actualGun: "lose", //gun
         sword: "lose", //stronger steel
         finger: "win", //scissor finger challenge gone wrong 
-        earth: "lose", //basically rock
+        earth: "loseShine", //basically rock
         water: "lose", //rust
         fire: "lose", //melt
-        thunder: "win", //just sound
+        thunder: "tie", //just sound
         lightning: "loseShine", //not just sound
         actualPaper: "win", //basically paper
         nineSpades: "win", //basically paper
@@ -165,7 +169,7 @@ function App() {
         earth: "tie", //nothing happens
         water: "lose", //rust
         fire: "lose", //melt
-        thunder: "lose", //the thunder is louder
+        thunder: "tie", //the thunder is louder
         lightning: "lose", //get zapped
         actualPaper: "win", //literal target
         nineSpades: "lose", //throw the card to cut the barrel
@@ -184,12 +188,12 @@ function App() {
         earth: "tie", //still nothing happens
         water: "lose", //still rust
         fire: "lose", //still melt
-        thunder: "win", //the big gun is louder
+        thunder: "tie", //the big gun is louder
         lightning: "lose", //get zapped
         actualPaper: "win", //literal target
         nineSpades: "lose", //throw the card to cut the barrel
         aceHearts: "lose", //throw the card to cut the barrel
-        dragon: "lose", //still lost
+        dragon: "win", //eat rocket lizard boy
       },
       actualGun: {
         rock: "win", //deadground rules
@@ -219,7 +223,7 @@ function App() {
         actualGun: "lose", //gunned
         sword: "lose", //robots aren't that agile
         finger: "win", //yeah
-        earth: "lose", //excalibur
+        earth: "win", //earth splitting sword
         water: "lose", //rust
         fire: "win", //fire sword
         thunder: "win", //thunder sword
@@ -249,175 +253,175 @@ function App() {
         dragon: "loseShine", //the dragon REALLY cares
       },
       earth: {
-        rock: "",
-        paper: "",
-        scissors: "",
-        gun: "",
-        bigGun: "",
-        actualGun: "",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "win", //bigger rock
+        paper: "win", //decompose
+        scissors: "winShine", //bigger rock
+        gun: "tie", //no shot
+        bigGun: "tie", //no shot
+        actualGun: "tie", //no shot
+        sword: "lose", //earth splitting sword
+        finger: "tie", //the earth don't care
+        earth: "loseShine", //planetary collision
+        water: "win", //water is containable in earth
+        fire: "win", //earth is not flammable
+        thunder: "tie", //it's just sound
+        lightning: "winShine", //earth absorbs charge
+        actualPaper: "win", //decompose
+        nineSpades: "win", //decompose
+        aceHearts: "win", //decompose
+        dragon: "win", //bury me bury me
       },
       water: {
-        rock: "",
-        paper: "",
-        scissors: "",
-        gun: "",
-        bigGun: "",
-        actualGun: "",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "win", //washed
+        paper: "win", //washed
+        scissors: "win", //rust
+        gun: "tie", //no shot
+        bigGun: "tie", //no shot
+        actualGun: "tie", //no shot
+        sword: "win", //rust
+        finger: "tie", //poseidon chill
+        earth: "lose", //earth contain water
+        water: "tie", //they just mix
+        fire: "win", //washed
+        thunder: "tie", //thunder does nothing
+        lightning: "lose", //conductor
+        actualPaper: "win", //washed
+        nineSpades: "win", //washed
+        aceHearts: "win", //washed
+        dragon: "tie", //not much dragon could do
       },
       fire: {
-        rock: "",
-        paper: "",
-        scissors: "",
-        gun: "",
-        bigGun: "",
-        actualGun: "",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "lose", //rocks don't burn
+        paper: "win", //burned
+        scissors: "win", //burned
+        gun: "win", //burned
+        bigGun: "win", //burned
+        actualGun: "win", //burned
+        sword: "win", //burned
+        finger: "win", //burned
+        earth: "lose", //put out
+        water: "lose", //put out 
+        fire: "lose", //extra fuel
+        thunder: "lose", //bad day in new york
+        lightning: "lose", //create flames
+        actualPaper: "win", //burned
+        nineSpades: "win", //burned
+        aceHearts: "win", //burned
+        dragon: "loseShine", //flames against dragon really
       },
       thunder: {
-        rock: "",
-        paper: "",
-        scissors: "",
-        gun: "",
-        bigGun: "",
-        actualGun: "",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "tie", //it's just sound
+        paper: "win", //with enough shockwave
+        scissors: "tie", //it's just sound
+        gun: "tie", //it's just sound
+        bigGun: "tie", //it's just sound
+        actualGun: "tie", //it's just sound
+        sword: "lose", //thunder sword
+        finger: "lose", //fuck off zeus
+        earth: "tie", //it's just sound
+        water: "tie", //it's just sound
+        fire: "tie", //it's just sound
+        thunder: "tie", //same thing
+        lightning: "lose", //lightning is faster
+        actualPaper: "win", //with enough shockwave
+        nineSpades: "win", //with enough shockwave
+        aceHearts: "win", //with enough shockwave
+        dragon: "lose", //dragon roars create thunder
       },
       lightning: {
-        rock: "",
-        paper: "",
-        scissors: "",
-        gun: "",
-        bigGun: "",
-        actualGun: "",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "lose", //absorb charge
+        paper: "win", //burned
+        scissors: "win", //zapped
+        gun: "win", //zapped
+        bigGun: "win", //zapped
+        actualGun: "win", //zapped
+        sword: "win", //zapped
+        finger: "win", //zapped
+        earth: "lose", //absorb charge
+        water: "win", //zapped
+        fire: "lose", //lightning creates fire
+        thunder: "win", //faster
+        lightning: "tie", //same thing
+        actualPaper: "win", //burned
+        nineSpades: "win", //burned
+        aceHearts: "win", //burned
+        dragon: "lose", //shell armor bitch
       },
       actualPaper: {
-        rock: "",
-        paper: "",
-        scissors: "",
-        gun: "",
-        bigGun: "",
-        actualGun: "",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "winShine", //better paper
+        paper: "win", //actual paper
+        scissors: "lose", //cut
+        gun: "win", //real bullshit
+        bigGun: "win", //real bullshit
+        actualGun: "lose", //shot
+        sword: "lose", //cut
+        finger: "win", //eyeshield block
+        earth: "lose", //bury me
+        water: "lose", //melted
+        fire: "lose", //melted
+        thunder: "lose", //with enough shockwave
+        lightning: "lose", //melted
+        actualPaper: "win", //a real human vs a bot in using real things
+        nineSpades: "win", //made from paper
+        aceHearts: "win", //made from paper
+        dragon: "win", //contracts
       },
       nineSpades: {
-        rock: "",
-        paper: "",
-        scissors: "",
-        gun: "",
-        bigGun: "",
-        actualGun: "",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "win", //digging
+        paper: "lose", //made from paper
+        scissors: "lose", //cut
+        gun: "win", //flushed
+        bigGun: "win", //flushed
+        actualGun: "lose",//shot
+        sword: "lose", //cut
+        finger: "lose", //lost at poker
+        earth: "win", //digging
+        water: "lose", //melted
+        fire: "lose", //melted
+        thunder: "tie", //does nothing
+        lightning: "win", //lightning rod with handle
+        actualPaper: "lose", //made from paper
+        nineSpades: "lose", //impossible pair
+        aceHearts: "lose", //worse card
+        dragon: "lose", //poker vs dragon
       },
       aceHearts: {
-        rock: "",
-        paper: "",
-        scissors: "",
-        gun: "",
-        bigGun: "",
-        actualGun: "",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "lose", //stoned heart
+        paper: "lose", //made from paper
+        scissors: "lose", //cut
+        gun: "win", //royal straight
+        bigGun: "win", //royal straight
+        actualGun: "lose", //shot
+        sword: "lose", //cut
+        finger: "win", //won at poker
+        earth: "lose", //buried heart
+        water: "tie", //water heart meh
+        fire: "win", //flame heart nice
+        thunder: "lose", //thunder bad for heart
+        lightning: "win", //shock therapy
+        actualPaper: "lose", //made from paper
+        nineSpades: "win", //better card
+        aceHearts: "lose", //impossible pair
+        dragon: "win", //dragon heart
       },
       dragon: {
-        rock: "",
-        paper: "",
-        scissors: "",
-        gun: "",
-        bigGun: "",
-        actualGun: "",
-        sword: "",
-        finger: "",
-        earth: "",
-        water: "",
-        fire: "",
-        thunder: "",
-        lightning: "",
-        actualPaper: "",
-        nineSpades: "",
-        aceHearts: "",
-        dragon: "",
+        rock: "lose", //goliathed
+        paper: "win", //playground rules
+        scissors: "win", //tiny sword
+        gun: "win", //dead
+        bigGun: "lose", //big gun better
+        actualGun: "winShine", //actually dead
+        sword: "lose", //excaliburred
+        finger: "tie", //you win but at what cost
+        earth: "lose", //bury me bury me
+        water: "tie", //just dodge
+        fire: "win", //historically bad match up
+        thunder: "win", //historically bad match up
+        lightning: "win", //shell armor
+        actualPaper: "lose", //oh no ndas
+        nineSpades: "win", //need a weapon
+        aceHearts: "lose", //dragon deez hearts
+        dragon: "lose", //classic 2x effectiveness
       },
     }, outcomeDetail: {
       tie: { className: "chart-outcome-tie", text: "/", icon: tieIcon, },
@@ -450,20 +454,21 @@ function App() {
     , onClick: moveTab,
   })
 
-  const [delayedText, setDelayedText] = useState("");
-
-  const confirmThis = (hand, gameContext) => {
+  const confirmThis = (hand) => {
     setGame((prev) => ({
       ...prev,
       selection: hand,
-      result: "none",
     }));
   }
 
   const chooseThis = (event, hand, gameContext) => {
-    // setTimeout(() => {
-    //   setDelayedText("Computer's Turn");
-    // }, 1000);
+    if (hand == "header") {
+      const win = window.open(chart.cornerURL, '_blank');
+      if (win != null) {
+        win.focus();
+      }
+      return;
+    }
 
     if ( gameContext.selection == "none" | gameContext.selection != hand){
       confirmThis(hand);
@@ -473,66 +478,168 @@ function App() {
     let newPlayerHand = hand;
     let newComputerHand = getComputerHand(hand, gameContext);
     let newResult = chart.outcomeTable[newPlayerHand][newComputerHand];
+    let newWins = gameContext.wins;
+    let newLoses = gameContext.loses;
+    let newTies = gameContext.ties;
+    let newShow = gameContext.show;
+    let log4 = null;
     let log1 = <div className="text-active">{"You played [" + chart.elementDetail[newPlayerHand].text + "]."}</div>;
-    let log2 = <div className="text-active">{"Our contender played [" + chart.elementDetail[newComputerHand].text + "]."}</div>;
+    let log2 = <div className="text-active">{"They played [" + chart.elementDetail[newComputerHand].text + "]."}</div>;
     let log3 = null;
     switch(newResult){
       case "none" : 
         log3 = <div className="text-background">{"But nothing happened..."}</div>
-        break
-      case "win" : 
-        log3 = <div className="text-win">{"And you won. Nice."}</div>
-        break
-      case "lose" : 
-        log3 = <div className="text-lose">{"And you lost. What a shame."}</div>
+        newTies++;
         break
       case "tie" : 
         log3 = <div className="text-background">{"And it's a tie."}</div>
-        break
-      case "winShine" : 
-        log3 = <div className="text-win-shine">{"AND YOU DECIMATED THEM! HURRAH!"}</div>
-        break
-      case "loseShine" : 
-        log3 = <div className="text-lose-shine">{"AND YOU\'RE FUCKING DESTROYED!"}</div>
+        newTies++;
         break
       case "tieShine" : 
         log3 = <div className="text-tie-shine">{"AND NOTHING HAPPENED!"}</div>
+        newTies++;
+        break
+
+      case "win" : 
+        log3 = <div className="text-win">{"And you won. Nice."}</div>
+        newWins++;
+        if (gameContext.gameMode == 1) {
+          newShow = newShow.filter((e) => e != newPlayerHand);
+          log4 = <div className="text-active"> {"Removing " + chart.elementDetail[newPlayerHand].text + "..."} </div>;
+        }
+        break
+      case "winShine" : 
+        log3 = <div className="text-win-shine">{"AND YOU DECIMATED THEM! HURRAH!"}</div>
+        newWins++;
+        if (gameContext.gameMode == 1) {
+          newShow = newShow.filter((e) => e != newPlayerHand);
+          log4 = <div className="text-active"> {"Removing " + chart.elementDetail[newPlayerHand].text + "..."} </div>;
+        }
+        break
+
+      case "lose" : 
+        log3 = <div className="text-lose">{"And you lost. What a shame."}</div>
+        newLoses++;
+        break
+      case "loseShine" : 
+        log3 = <div className="text-lose-shine">{"AND YOU\'RE FUCKING DESTROYED!"}</div>
+        newLoses++;
         break
     }
+    if (gameContext.gameMode == 2) {
+      newShow = newShow.filter((e) => e != newPlayerHand);
+      log4 = <div className="text-active"> {"Removing " + chart.elementDetail[newPlayerHand].text + "..."} </div>;
+    }
+    if (gameContext.gameMode == 3) {
+      console.log(gameContext.round, gameContext.result, newResult)
+      if (gameContext.result != "none" & gameContext.result != newResult & gameContext.result != (newResult + "Shine")) {
+        console.log(gameContext.result)
+        newShow = [];
+        let resultText = gameContext.result.length > 5 ? gameContext.result.substr(0, gameContext.result.length-5) : gameContext.result
+        log4 = <div className="text-active"> {"You lost your " + resultText + " streak."} </div>;
+      }
+    }
     let newRound = gameContext.round + 1;
-    let log4 = <div className="text-hidden"> blank text </div>;
-    let log5 = <div className="text-background"> {"== == == == Round " + newRound + " == == == =="} </div>;
+    let log5 = <div className="text-hidden"> blank text </div>;
+    let log6 = <div className="text-background"> {"== == == Round " + newRound + " == == =="} </div>;
+    let newHands = getAvailableHands(gameContext, newShow)
     setGame((prev) => ({
       ...prev,
       selection: "none",
       playerHand: newPlayerHand,
       computerHand: newComputerHand,
+      wins: newWins,
+      loses: newLoses,
+      ties: newTies,
       result: newResult,
+      hands: newHands,
       round: newRound,
-      log: [...prev.log, log1, log2, log3, log4, log5 ],
+      show: newShow,
+      log: [...prev.log, log1, log2, log3, log4, log5, log6,  ],
     }));
-    
-    console.log([gameContext.round, gameContext.playerHand, gameContext.computerHand, gameContext.result])
+  }
+  
+  const getAvailableHands = (gameContext, newShow) => {
+    let handsLimit = gameContext.handModes[gameContext.handMode];
+    if (handsLimit >= newShow.length) {
+      return newShow
+    }
+    let hands = [];
+    while (hands.length < handsLimit) {
+      let handCandidate = newShow[Math.floor(Math.random() * newShow.length)]
+      if (!hands.includes(handCandidate)) {
+        hands.push(handCandidate)
+      }
+    }
+    return hands;
   }
 
   const getComputerHand = (hand, gameContext) => {
     switch(gameContext.aiMode){
       case 0:
-        return chart.show[2]
+        return "scissors"
       case 1 : 
-        return chart.show[Math.floor(Math.random() * chart.show.length)];
+        return gameContext.hands[Math.floor(Math.random() * gameContext.hands.length)];
     }
   }
 
+  const resetGame = () => {
+    setGame((prev) => ({
+      ...prev,
+      show: chart.show,
+      hands: ["rock", "paper", "scissors"],
+      wins: 0,
+      loses: 0,
+      ties: 0,
+      round: 1,
+      selection: "none",
+      playerHand: "none",
+      computerHand: "none",
+      result: "none",
+      log: [
+        <div className="text-background">Initiating Better Rock Paper Scissors...</div>,
+        <div className="text-background">Welcome, contender!</div>,
+        <div className="text-hidden"> blank text </div>,
+        <div className="text-background"> == == == Round 1 == == == </div>,
+      ],
+    }))
+  }
+
   const [game, setGame] = useState({
-    aiMode: 0,
-    aiModes: ["Robert Mode", "Random Mode",],
+    show: chart.show,
+    hands: ["rock", "paper", "scissors"],
+    wins: 0,
+    loses: 0,
+    ties: 0,
     round: 1,
     selection: "none",
-    turns: [ "Player", "Computer" ],
     playerHand: "none",
     computerHand: "none",
     result: "none",
+    log: [
+      <div className="text-background">Initiating Better Rock Paper Scissors...</div>,
+      <div className="text-background">Welcome, contender!</div>,
+      <div className="text-hidden"> blank text </div>,
+      <div className="text-background"> == == == Round 1 == == == </div>,
+    ],
+
+    resetGame: resetGame,
+    onClick: chooseThis,
+    
+    aiMode: 1,
+    aiModes: ["Robert Mode", "Random Mode",],
+    handMode: 1,
+    handModes: [3, 5, 9, 17],
+    gameMode: 0,
+    gameModes: ["Standard", "Cascading Elimination", "Card Game", "Streak Master"],
+
+    gameModesDesc: [
+      "Each round is indistinct from each other except for the different hand selection.", 
+      "Every round you win, eliminate the hand you win with. Win with every hand as fast as possible.",
+      "You draw a hand every round and discard the hand you use. Win as much as possible before running out of hands with this classic challenge.",
+      "Get a streak of wins, loses, or ties. Any streak break would remove the hand pool.",
+    ],
+    turns: [ "Player", "Computer" ],
     results: { 
       none: {text: "None", classNames: {layer2: "text-win-active bg-slate-200", layer3: "opacity-80"}},
       win: {text: "Win", classNames: {layer2: "text-win bg-green-200", layer3: "opacity-80"}},
@@ -541,13 +648,6 @@ function App() {
       winShine: {text: "Great Victory", classNames: {layer2: "text-win-shine bg-green-300", layer3: "opacity-100"}},
       loseShine: {text: "Great Defeat", classNames: {layer2: "text-lose-shine bg-red-300", layer3: "opacity-100"}},
       tieShine: {text: "Even Fight", classNames: {layer2: "text-tie-shine bg-yellow-300", layer3: "opacity-100"}}, },
-    onClick: chooseThis,
-    log: [
-      <div className="text-background">Initiating Better Rock Paper Scissors...</div>,
-      <div className="text-background">Welcome, contender!</div>,
-      <div className="text-hidden"> blank text </div>,
-      <div className="text-background"> == == == == Round 1 == == == == </div>,
-    ],
   })
 
   return (

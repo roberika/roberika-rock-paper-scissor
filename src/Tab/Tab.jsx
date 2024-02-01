@@ -27,7 +27,10 @@ export default function Tab({ }) {
                     {children}
                 </TabPanel>
             ))}
-            <HandSprite />
+            <HandSprite> 
+                
+            </HandSprite>
+            
         </div>
     )
 }
@@ -36,9 +39,13 @@ function HandSprite() {
     const chart = useContext(ChartContext);
     const game = useContext(GameContext);
 
-    return <img className={"chart-hand " + (game.selection == "none" ? "invisible" : "visible")} 
-    src={chart.elementDetail[game.selection].handIcon}
-    alt={chart.elementDetail[game.selection].text } />
+    return <div className={"flex " + (game.selection == "none" ? "invisible" : "visible")}>
+    <div className='hand-text'>{chart.elementDetail[game.selection].text}</div>
+        <img className={"hand-sprite"} 
+            src={chart.elementDetail[game.selection].handIcon}
+            alt={chart.elementDetail[game.selection].text } />
+    </div>
+    
 }
 
 export function TabPanel({ children, index }) {
