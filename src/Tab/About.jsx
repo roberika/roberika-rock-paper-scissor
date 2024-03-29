@@ -30,7 +30,7 @@ export default function About() {
             </p>
             <br />
             <p className='about-footer'>
-                <span className='about-footer-text'> v1.0.0 - Roberika - 2024 </span>
+                <span className='about-footer-text'> v1.1.0 - Roberika - 2024 </span>
                 <a href='https://github.com/roberika'><img className='social-icon' src={githubIcon}></img></a>
             </p>
             <br/>   
